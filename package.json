@@ -1,0 +1,35 @@
+{
+  "name": "student_management_system",
+  "version": "1.0.0",
+  "description": "Note:- This is my ongoing project, so it's not complete yet.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Jesuva",
+  "license": "ISC",
+  "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.3",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.17.1",
+    "express-url-breadcrumb": "0.0.8",
+    "faker": "^4.1.0",
+    "joi": "^13.7.0",
+    "method-override": "^2.3.10",
+    "moment": "^2.29.1",
+    "mongoose": "^5.11.12",
+    "mongoose-paginate": "^5.0.3",
+    "multer": "^1.4.2",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "randomstring": "^1.1.5"
+  },
+  "devDependencies": {
+    "handlebars": "^4.7.6"
+  }
+}
