@@ -3,6 +3,27 @@ body {
     font-family: 'Titillium Web', sans-serif;
     overflow-x: hidden;
 }
+body {
+	background: linear-gradient(-45deg, #912808, #456cd8, #055470, #06503f);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+table{
+    background-color: #f9fbe7;
+}
 
 .container-fluid {
     width: 95%;
@@ -568,7 +589,7 @@ input[type="date"]:focus,
     right: 0;
     opacity: 1;
     transition: .5s ease;
-    background-color: rgba(255, 184, 77, 0.8);
+    background-color: rgb(77 111 255 / 80%);
     overflow: hidden;
 }
 

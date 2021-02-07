@@ -1771,7 +1771,7 @@ pre code {
 .table {
     width: 100%;
     margin-bottom: 1rem;
-    background-color: transparent
+    background-color: #f9fbe7;
 }
 
 .table th,

@@ -14,32 +14,43 @@ const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-acce
 
 const app = express();
 
-// Load Routes
 const students = require('./routes/students');
 const users = require('./routes/users');
 const courses = require('./routes/courses');
 const fees = require('./routes/fee-mgmt');
 const api = require('./routes/api');
 const uploads = require('./routes/uploads');
+const departments = require('./routes/departments');
 
 // Passport Config.
 require('./config/passport')(passport);
 
+
 // Connecting to MongoDB...
 const mongoose = require('mongoose');
-const db = "mongodb+srv://admin:JF4P7NFFmsdWhKl0@main.3vyzt.mongodb.net/StudentManagementSystem?retryWrites=true&w=majority";
+const db = process.env.MONGODB_URI || 'mongodb+srv://admin:JF4P7NFFmsdWhKl0@main.3vyzt.mongodb.net/StudentManagementSystem?retryWrites=true&w=majority';
+// const db = "mongodb+srv://admin:JF4P7NFFmsdWhKl0@main.3vyzt.mongodb.net/StudentManagementSystem?retryWrites=true&w=majority";
 // mongoose.connect(db,'mongodb+srv://admin:admin123@main.3vyzt.mongodb.net/StudentManagementSystem?retryWrites=true&w=majority', {
 //     useNewUrlParser: true
 // }).then(() => console.log('Connected to MongoDB Server...')).catch(err => console.error('Error occured connecting to MongoDB...', err));
+
+// mongoose
+//   .connect(db, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => console.log('Connected to Cloud instance and Cluster Successfully'))
+//   .catch(err => console.log('connection error: ' + err));
 
 mongoose
   .connect(db, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
   })
   .then(() => console.log('Connected to Cloud instance and Cluster Successfully'))
   .catch(err => console.log('connection error: ' + err));
-
 
 // Load Helper
 const {
@@ -72,7 +83,7 @@ app.set('view engine', 'handlebars');
 // Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Express URL Breadcrumbs
+// Breadcrumbs
 app.use(breadcrumb());
 
 // Body Parser Middleware
@@ -144,8 +155,9 @@ app.use('/courses', courses);
 app.use('/fee-management', fees);
 app.use('/api', api);
 app.use('/uploads', uploads);
+app.use('/departments',departments);
 
-// Listening on Port:5000
+// Listening on Port:3000
 const port = process.env.PORT || 3000;
 // const port = process.env.NODE_ENV || 5000;
 app.set('port', port);
