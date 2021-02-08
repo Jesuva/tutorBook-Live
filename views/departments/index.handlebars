@@ -15,19 +15,9 @@
                 <td>{{dname}}</td>
                 <td class="hide-element">
                     <div class="dropdown" id="customized-dropdown">
-                        <button type="button" class="btn btn-default" data-toggle="dropdown">
-                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right animated fadeIn">
-                            <li class="edit-item">
-                                <a class="dropdown-item" href="/courses/edit?id={{id}}">
-                                    Edit
-                                </a>
-                            </li>
-                            <li class="del-item">
-                                <a href="#" class="dropdown-item" onclick="deleteItem('/courses/{{id}}');">Delete</a>
-                            </li>
-                        </div>
+                            <i class="fa fa-trash" onclick="deleteItem('/departments/delete/{{id}}');" style="cursor: pointer;"></i> 
+                                <a href="#" class="dropdown-item" ></a>
+                            </i>
                     </div>
                 </td>
             </tr>
@@ -41,22 +31,7 @@
         {{#paginate current=current pages=pages}} {{/paginate}}
     </ul>
 
-    {{#unless user.privileges.update}}
-    <script>
-        let updateItems = document.getElementsByClassName('edit-item'), count;
-        let hideItems = document.getElementsByClassName('hide-element'), x;
-
-        for (count = 0; count < updateItems.length; count++) {
-            updateItems[count].style.display = 'none';
-        }
-
-        for (x = 0; x < hideItems.length; x++) {
-            hideItems[x].style.display = 'none';
-        }
-
-        document.getElementById('hide-item').style.display = 'none';
-    </script>
-    {{/unless}}
+    
 
     {{#unless user.privileges.delete}}
     <script>

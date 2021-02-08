@@ -9,8 +9,10 @@ const path = require('path');
 const fs = require('fs');
 const breadcrumb = require('express-url-breadcrumb');
 const multer = require('multer');
-const Handlebars = require('handlebars')
-const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
+const Handlebars = require('handlebars');
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const app = express();
 
@@ -28,20 +30,7 @@ require('./config/passport')(passport);
 
 // Connecting to MongoDB...
 const mongoose = require('mongoose');
-const db = process.env.MONGODB_URI || 'mongodb+srv://admin:JF4P7NFFmsdWhKl0@main.3vyzt.mongodb.net/StudentManagementSystem?retryWrites=true&w=majority';
-// const db = "mongodb+srv://admin:JF4P7NFFmsdWhKl0@main.3vyzt.mongodb.net/StudentManagementSystem?retryWrites=true&w=majority";
-// mongoose.connect(db,'mongodb+srv://admin:admin123@main.3vyzt.mongodb.net/StudentManagementSystem?retryWrites=true&w=majority', {
-//     useNewUrlParser: true
-// }).then(() => console.log('Connected to MongoDB Server...')).catch(err => console.error('Error occured connecting to MongoDB...', err));
-
-// mongoose
-//   .connect(db, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .then(() => console.log('Connected to Cloud instance and Cluster Successfully'))
-//   .catch(err => console.log('connection error: ' + err));
-
+const db = process.env.MONGODB_URI;
 mongoose
   .connect(db, {
     useNewUrlParser: true,
@@ -158,7 +147,6 @@ app.use('/uploads', uploads);
 app.use('/departments',departments);
 
 // Listening on Port:3000
-const port = process.env.PORT || 3000;
-// const port = process.env.NODE_ENV || 5000;
+const port = process.env.PORT;
 app.set('port', port);
 app.listen(port, () => console.log(`Server started on port : ${port}`));

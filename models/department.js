@@ -4,6 +4,10 @@ const departmentSchema = new mongoose.Schema({
     dname: {
         type: String,
         required: true
+    },
+    dcode: {
+        type: String,
+        required: true
     }
 });
 

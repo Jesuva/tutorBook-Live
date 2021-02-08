@@ -83,15 +83,8 @@ router.post('/add',[ensureAuthenticated, isAdmin,  createAccessControl], async (
         }
     }
     else {
-        errors.push({
-            text: 'Department Already Exist!'
-        });
-        res.render('departments', {
-            title: 'Add Department',
-            breadcrumbs: true,
-            errors: errors,
-            body: req.body
-        });
+        req.flash('error_msg', 'Department Code already Exist');
+        res.redirect('/departments');
     }
 })
 
@@ -103,32 +96,19 @@ router.get('/add',[ensureAuthenticated, isAdmin, createAccessControl], async (re
     });
 })
 
-// router.post('/add',[ensureAuthenticated, isAdmin, createAccessControl], async(req, res) =>{
-//     const dept = new Department({
-//         dcode: req.body.departmentCode,
-//         dname: req.body.departmentName,
-//     });
-//     try {
-//         const result = await dept.save();
+router.delete('/delete/:id', [ensureAuthenticated, isAdmin, deleteAccessControl], async (req, res) => {
+    const result = await Department.remove({
+        _id: req.params.id
+    });
 
-//         if (result) {
-//             req.flash('success_msg', 'Course saved successfully.');
-//             res.redirect('/courses');
-//         }
-//     } catch (ex) {
-//         for (field in ex.errors) {
-//             errors.push({
-//                 text: ex.errors[field].message
-//             });
-//         }
-//         res.render('courses/add', {
-//             title: 'Add New Course',
-//             breadcrumbs: true,
-//             errors: errors,
-//             body: req.body,
-//             dept: dept
-//         });
-//     } 
-// })
+    if (result) {
+        req.flash('success_msg', 'Record deleted successfully.');
+        res.send('/departments');
+    }
+    else{
+        req.flash('error_msg', 'OOPS!,Something Went Wrong!');
+        res.send('/departments');
+    }
+});
 
 module.exports = router;
