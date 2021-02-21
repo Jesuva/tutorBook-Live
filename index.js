@@ -30,7 +30,7 @@ require('./config/passport')(passport);
 
 // Connecting to MongoDB...
 const mongoose = require('mongoose');
-const db = process.env.MONGODB_URI;
+const db = process.env.MONGODB_URI || "mongodb+srv://admin:JF4P7NFFmsdWhKl0@main.3vyzt.mongodb.net/StudentManagementSystem?retryWrites=true&w=majority" ;
 mongoose
   .connect(db, {
     useNewUrlParser: true,
@@ -147,6 +147,6 @@ app.use('/uploads', uploads);
 app.use('/departments',departments);
 
 // Listening on Port:3000
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 app.set('port', port);
 app.listen(port, () => console.log(`Server started on port : ${port}`));
