@@ -1,5 +1,5 @@
 function getDepartment() {
-    const URL = 'http://localhost:3000/api/get-department';
+    const URL = 'http://tutorbook.herokuapp.com/api/get-department';
 
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -21,7 +21,7 @@ function getDepartment() {
 
 function getCourses(dept) {
 
-    const URL = `http://localhost:3000/api/get-courses?deptName=${dept}`;
+    const URL = `http://tutorbook.herokuapp.com/api/get-courses?deptName=${dept}`;
 
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -42,7 +42,7 @@ function getCourses(dept) {
 }
 
 function getStudentInfo(studentRollNo) {
-    const URL = `http://localhost:3000/api/getStudentInfo?studentRollNo=${studentRollNo}`;
+    const URL = `http://tutorbook.herokuapp.com/api/getStudentInfo?studentRollNo=${studentRollNo}`;
 
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
