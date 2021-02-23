@@ -23,6 +23,7 @@ const fees = require('./routes/fee-mgmt');
 const api = require('./routes/api');
 const uploads = require('./routes/uploads');
 const departments = require('./routes/departments');
+const forms = require('./routes/forms');
 
 // Passport Config.
 require('./config/passport')(passport);
@@ -145,6 +146,7 @@ app.use('/fee-management', fees);
 app.use('/api', api);
 app.use('/uploads', uploads);
 app.use('/departments',departments);
+app.use('/forms',forms);
 
 // Listening on Port:3000
 const port = process.env.PORT;
